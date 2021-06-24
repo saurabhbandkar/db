@@ -1,13 +1,15 @@
-const express = require('express');
+const express = require("express");
 const port = process.env.PORT || 9001;
-const path = require('path');
-const logger = require ('./middleware/logger');
+const path = require("path");
+const logger = require("./middleware/logger");
 const app = express();
 
+app.use(express.json());
+//app.use(express.urlencoded({ extended: false }));
 app.use(logger);
-app.use(express.static(path.join(__dirname,'public')));
-app.use('/api', require('./routes/routeData'));
+app.use(express.static(path.join(__dirname, "public")));
+app.use("/api", require("./routes/routeData"));
 
 app.listen(port, () => {
-    console.log('Running server on port: ' + port);
+  console.log("Running server on port: " + port);
 });
